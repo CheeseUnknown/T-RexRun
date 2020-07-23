@@ -31,6 +31,11 @@ cactus_image = [
     pygame.image.load("image/cactus03.png"),
 ]
 
+bird = [
+    pygame.image.load("image/bird1.png"),
+    pygame.image.load("image/bird2.png"),
+]
+
 dead_screen_game_over_image = pygame.image.load("image/game_over.png")
 
 jump_sound = pygame.mixer.Sound("sound/jump.mp3")

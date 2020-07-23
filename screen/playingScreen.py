@@ -5,6 +5,7 @@ from sprite.TRex import *
 from sprite.cloud import *
 from sprite.cactus import *
 from function import *
+from sprite.bird import *
 
 class PlayingScreen(object):
     def __init__(self, setting, ticks):
@@ -25,11 +26,13 @@ class PlayingScreen(object):
         self.cactus_group = pygame.sprite.Group()
         cactus = Cactus()
         self.cactus_group.add(cactus)
+        self.bird_group = pygame.sprite.Group()
 
     def update(self, setting, ticks, screen):
         self.load_image()
         self.cloud_manager()
         self.cactus_manager()
+        self.bird_manager(ticks)
         self.TRex_group_single.update(setting, ticks)
         self.die(setting, screen)
 
@@ -37,6 +40,7 @@ class PlayingScreen(object):
         self.TRex_group_single.draw(self.image)
         self.cloud_group.draw(self.image)
         self.cactus_group.draw(self.image)
+        self.bird_group.draw(self.image)
         screen.blit(self.image, (self.x, self.y))
 
     def cloud_manager(self):
@@ -70,3 +74,13 @@ class PlayingScreen(object):
                 setting.best_score = setting.score
                 write_txt(setting)
             setting.score = 0
+
+    def bird_manager(self, ticks):
+        x = random.randint(0, 500)
+        self.bird_group.update(ticks)
+        if x == 0:
+            bird0 = Bird(ticks)
+            self.bird_group.add(bird0)
+            for bird in self.bird_group:
+                if bird.x <= -41:
+                    self.bird_group.remove(bird)

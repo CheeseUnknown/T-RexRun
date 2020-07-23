@@ -15,6 +15,8 @@ class TRex(pygame.sprite.Sprite):
         elif setting.table == 1:
             if ticks > self.last_tick + 100:
                 setting.score += 2
+                if setting.score == 99999:
+                    setting.score = 0
                 self.image_index += 1
                 if self.image_index >= 2:
                     self.image_index = 0
