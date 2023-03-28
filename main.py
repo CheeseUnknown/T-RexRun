@@ -16,7 +16,7 @@ while True:
     ticks = pygame.time.get_ticks()
     mouse_position = pygame.mouse.get_pos()
     get_event(setting, main_screen, mouse_position, ticks)
-    
+
     main_screen.update(setting, ticks)
 
     main_screen.draw(screen, setting)
